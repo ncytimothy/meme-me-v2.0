@@ -32,15 +32,11 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+  
         memeTableView.layoutMargins = UIEdgeInsets.zero
         memeTableView.separatorInset = UIEdgeInsets.zero
     }
-    
-    @objc func reloadList() {
-        memeTableView.reloadData()
-    }
-    
+        
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return memes.count
@@ -61,13 +57,5 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
         let detailViewController = storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
         detailViewController.meme = memes[(indexPath as NSIndexPath).row]
         self.navigationController?.pushViewController(detailViewController, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.memes.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
     }
 }

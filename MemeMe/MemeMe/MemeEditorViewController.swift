@@ -84,7 +84,6 @@ class MemeEditorVC: UIViewController {
         cancelButton.isEnabled = false
         shareButton.isEnabled = false
         dismiss(animated: true, completion: nil)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
     }
         
     @IBAction func pickImageFromCamera(_ sender: Any) {
@@ -160,7 +159,6 @@ class MemeEditorVC: UIViewController {
         activityController.completionWithItemsHandler = { (activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) -> Void in
             if completed == true {
                 self.save(memedImage)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
                 self.dismiss(animated: true, completion: nil)
             }
         }

@@ -17,7 +17,6 @@ class SentMemesCollectionViewController: UIViewController, UICollectionViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        NotificationCenter.default.addObserver(self, selector: #selector(reloadList), name: NSNotification.Name(rawValue: "load"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -26,20 +25,12 @@ class SentMemesCollectionViewController: UIViewController, UICollectionViewDataS
         memesCollection.reloadData()
     }
     
-
-    
-//    @objc func reloadList() {
-//        memesCollection.reloadData()
-//    }
-    
     @IBAction func addMeme(_ sender: Any) {
         let memeEditorVC = self.storyboard?.instantiateViewController(withIdentifier: "MemeEditorVC") as! MemeEditorVC
         self.navigationController?.present(memeEditorVC, animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        memes = appDelegate.memes
         return memes.count
     }
     
@@ -56,7 +47,6 @@ class SentMemesCollectionViewController: UIViewController, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailViewController = storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
         detailViewController.meme = memes[(indexPath as NSIndexPath).row]
-        
         self.navigationController?.pushViewController(detailViewController, animated: true)
         
     }
