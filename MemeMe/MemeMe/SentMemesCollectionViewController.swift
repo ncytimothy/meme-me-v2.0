@@ -23,7 +23,6 @@ class SentMemesCollectionViewController: UIViewController, UICollectionViewDataS
     override func viewWillAppear(_ animated: Bool) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         memes = appDelegate.memes
-        print("viewWillAppear CollectView called")
         memesCollection.reloadData()
     }
     
@@ -44,15 +43,6 @@ class SentMemesCollectionViewController: UIViewController, UICollectionViewDataS
         return memes.count
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-         print("viewWillDisappear CollectionView called")
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        print("viewDidDisappear CollectionView called")
-    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MemeCollectionViewCell", for: indexPath) as! MemeCollectionViewCell

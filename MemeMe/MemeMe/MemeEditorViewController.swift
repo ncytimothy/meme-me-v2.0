@@ -47,9 +47,6 @@ class MemeEditorVC: UIViewController {
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         albumButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
         subscribeToKeyboardNotifications()
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-        
-         print("viewWillAppear MemeEditor called")
     }
     
     
@@ -87,15 +84,9 @@ class MemeEditorVC: UIViewController {
         cancelButton.isEnabled = false
         shareButton.isEnabled = false
         dismiss(animated: true, completion: nil)
-        print("pressCancel called")
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        print("viewDidDisappear MemeEditor called")
-    }
-    
-    
+        
     @IBAction func pickImageFromCamera(_ sender: Any) {
         chooseSourceType(sourceType: .camera)
     }
@@ -169,6 +160,7 @@ class MemeEditorVC: UIViewController {
         activityController.completionWithItemsHandler = { (activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) -> Void in
             if completed == true {
                 self.save(memedImage)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
                 self.dismiss(animated: true, completion: nil)
             }
         }
@@ -182,8 +174,6 @@ class MemeEditorVC: UIViewController {
             let object = UIApplication.shared.delegate
             let appDelegate = object as! AppDelegate
             appDelegate.memes.append(meme)
-//            self.dismiss(animated: true, completion: nil)
-//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
         }
     }
     

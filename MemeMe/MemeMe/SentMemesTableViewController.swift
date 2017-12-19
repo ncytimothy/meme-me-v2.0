@@ -27,14 +27,7 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
         super.viewWillAppear(animated)
         memeTableView.rowHeight = 90
         memes = appDelegate.memes
-        print(memes)
-        print("viewWillAppear table called")
         memeTableView.reloadData()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print("viewWillDisappear TableView called")
     }
     
     override func viewDidLoad() {
@@ -48,13 +41,8 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
         memeTableView.reloadData()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        print("viewDidDisappear TableView called")
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("memes.count: \(memes.count)")
         return memes.count
     }
     
