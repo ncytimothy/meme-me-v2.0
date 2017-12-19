@@ -88,7 +88,7 @@ class MemeEditorVC: UIViewController {
         shareButton.isEnabled = false
         dismiss(animated: true, completion: nil)
         print("pressCancel called")
-//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {

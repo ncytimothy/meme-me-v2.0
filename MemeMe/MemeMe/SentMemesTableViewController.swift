@@ -20,7 +20,7 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
     
     @IBAction func addMeme(_ sender: Any) {
         let memeEditorVC = self.storyboard?.instantiateViewController(withIdentifier: "MemeEditorVC") as! MemeEditorVC
-        self.navigationController?.pushViewController(memeEditorVC, animated: true)
+        present(memeEditorVC, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +39,7 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        NotificationCenter.default.addObserver(self, selector: #selector(reloadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadList), name: NSNotification.Name(rawValue: "load"), object: nil)
         memeTableView.layoutMargins = UIEdgeInsets.zero
         memeTableView.separatorInset = UIEdgeInsets.zero
     }
@@ -70,9 +70,9 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let detailViewController = storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
-//        detailViewController.meme = memes[(indexPath as NSIndexPath).row]
-//        self.navigationController?.pushViewController(detailViewController, animated: true)
+        let detailViewController = storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
+        detailViewController.meme = memes[(indexPath as NSIndexPath).row]
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
