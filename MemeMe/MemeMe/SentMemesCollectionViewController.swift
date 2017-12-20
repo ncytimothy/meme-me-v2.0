@@ -9,20 +9,14 @@
 import Foundation
 import UIKit
 
-class SentMemesCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class SentMemesCollectionViewController: UICollectionViewController {
     
     var memes = [Meme]()
-    
-    @IBOutlet weak var memesCollection: UICollectionView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         memes = appDelegate.memes
-        memesCollection.reloadData()
+        collectionView?.reloadData()
     }
     
     @IBAction func addMeme(_ sender: Any) {
@@ -30,12 +24,12 @@ class SentMemesCollectionViewController: UIViewController, UICollectionViewDataS
         self.navigationController?.present(memeEditorVC, animated: true, completion: nil)
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return memes.count
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MemeCollectionViewCell", for: indexPath) as! MemeCollectionViewCell
         let meme = memes[(indexPath as NSIndexPath).row]
         
@@ -44,7 +38,7 @@ class SentMemesCollectionViewController: UIViewController, UICollectionViewDataS
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailViewController = storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
         detailViewController.meme = memes[(indexPath as NSIndexPath).row]
         self.navigationController?.pushViewController(detailViewController, animated: true)

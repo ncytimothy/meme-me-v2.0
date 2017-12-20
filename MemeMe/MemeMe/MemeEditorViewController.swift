@@ -37,7 +37,7 @@ class MemeEditorVC: UIViewController {
         super.viewDidLoad()
         formatText()
         enableShare()
-        enableReset()
+//        enableReset()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         memes = appDelegate.memes
     }
@@ -73,9 +73,9 @@ class MemeEditorVC: UIViewController {
         shareButton.isEnabled = imagePickerView.image != nil
     }
     
-    func enableReset() {
-        cancelButton.isEnabled = topTextfield.text != topDefaultText || bottomTextfield.text != bottomDefaultText || imagePickerView.image != nil
-    }
+//    func enableReset() {
+//        cancelButton.isEnabled = topTextfield.text != topDefaultText || bottomTextfield.text != bottomDefaultText |imagePickerView.image != nil
+//    }
 
    
     @IBAction func pressCancel (_ sender: Any) {
@@ -184,7 +184,7 @@ class MemeEditorVC: UIViewController {
 
 extension MemeEditorVC: UITextFieldDelegate, UINavigationControllerDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        enableReset()
+//        enableReset()
         enableShare()
         return true
     }
@@ -217,7 +217,7 @@ extension MemeEditorVC: UIImagePickerControllerDelegate {
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
             imagePickerView.image = image
             imagePickerView.contentMode = .scaleAspectFit
-            enableReset()
+//            enableReset()
             enableShare()
         }
         dismiss(animated: true, completion: nil)

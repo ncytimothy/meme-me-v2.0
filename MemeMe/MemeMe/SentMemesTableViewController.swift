@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SentMemesTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SentMemesTableViewController: UITableViewController {
   
     var memes = [Meme]()
   
@@ -17,32 +17,30 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    
     @IBAction func addMeme(_ sender: Any) {
         let memeEditorVC = self.storyboard?.instantiateViewController(withIdentifier: "MemeEditorVC") as! MemeEditorVC
-        present(memeEditorVC, animated: true, completion: nil)
+       present(memeEditorVC, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         memeTableView.rowHeight = 90
         memes = appDelegate.memes
-        memeTableView.reloadData()
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-  
         memeTableView.layoutMargins = UIEdgeInsets.zero
         memeTableView.separatorInset = UIEdgeInsets.zero
     }
         
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return memes.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemeTableViewCell") as! MemeTableViewCell
         let meme = memes[(indexPath as NSIndexPath).row]
         cell.layoutMargins = UIEdgeInsets.zero
@@ -53,7 +51,7 @@ class SentMemesTableViewController: UIViewController, UITableViewDataSource, UIT
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailViewController = storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
         detailViewController.meme = memes[(indexPath as NSIndexPath).row]
         self.navigationController?.pushViewController(detailViewController, animated: true)
