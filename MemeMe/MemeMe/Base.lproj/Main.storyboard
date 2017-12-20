@@ -321,7 +321,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2Xg-bo-I95" customClass="MemeCollectionViewCell" customModule="MemeMe" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MemeCollectionViewCell" id="2Xg-bo-I95" customClass="MemeCollectionViewCell" customModule="MemeMe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="122" height="122"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -352,7 +352,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="memesCollection" destination="MWY-Ty-0KE" id="LvD-uK-skV"/>
+                        <outlet property="collectionView" destination="MWY-Ty-0KE" id="Lw2-sQ-c19"/>
+                        <outlet property="memeCollectionView" destination="MWY-Ty-0KE" id="Lun-E6-cX5"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PxJ-EW-6hV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -379,7 +380,6 @@
         <!--Sent Memes Table View-->
         <scene sceneID="jWG-03-VxK">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N6B-dg-z2L" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="3wn-TR-ZDZ" userLabel="Sent Memes Table View" customClass="SentMemesTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VLz-4M-92N">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -432,6 +432,7 @@
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N6B-dg-z2L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-543" y="873"/>
         </scene>

@@ -13,10 +13,12 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     var memes = [Meme]()
     
+    @IBOutlet var memeCollectionView: UICollectionView!
+    
     override func viewWillAppear(_ animated: Bool) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         memes = appDelegate.memes
-        collectionView?.reloadData()
+        memeCollectionView.reloadData()
     }
     
     @IBAction func addMeme(_ sender: Any) {
