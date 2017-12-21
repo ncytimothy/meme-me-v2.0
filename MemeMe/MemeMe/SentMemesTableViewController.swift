@@ -18,15 +18,22 @@ class SentMemesTableViewController: UITableViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     @IBAction func addMeme(_ sender: Any) {
-        let memeEditorVC = self.storyboard?.instantiateViewController(withIdentifier: "MemeEditorVC") as! MemeEditorVC
-       present(memeEditorVC, animated: true, completion: nil)
+       let editor = self.storyboard?.instantiateViewController(withIdentifier: "Editor") as! EditorViewController
+       present(editor, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         memeTableView.rowHeight = 90
         memes = appDelegate.memes
-        tableView.reloadData()
+        print("table memes: \(memes)")
+        memeTableView.reloadData()
+        print("viewWillAppear TableView")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        memeTableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -55,5 +62,12 @@ class SentMemesTableViewController: UITableViewController {
         let detailViewController = storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
         detailViewController.meme = memes[(indexPath as NSIndexPath).row]
         self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            memes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
 }

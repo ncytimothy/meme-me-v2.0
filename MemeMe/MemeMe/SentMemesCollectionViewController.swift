@@ -19,11 +19,13 @@ class SentMemesCollectionViewController: UICollectionViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         memes = appDelegate.memes
         memeCollectionView.reloadData()
+        print("viewWillAppear CollectionView")
     }
     
+    
     @IBAction func addMeme(_ sender: Any) {
-        let memeEditorVC = self.storyboard?.instantiateViewController(withIdentifier: "MemeEditorVC") as! MemeEditorVC
-        self.navigationController?.present(memeEditorVC, animated: true, completion: nil)
+        let editor = self.storyboard?.instantiateViewController(withIdentifier: "Editor") as! UIViewController
+       present(editor, animated: true, completion: nil)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
