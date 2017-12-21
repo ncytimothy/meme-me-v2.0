@@ -26,9 +26,7 @@ class SentMemesTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         memeTableView.rowHeight = 90
         memes = appDelegate.memes
-        print("table memes: \(memes)")
         memeTableView.reloadData()
-        print("viewWillAppear TableView")
     }
     
     override func viewDidAppear(_ animated: Bool) {

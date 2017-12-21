@@ -19,7 +19,6 @@ class SentMemesCollectionViewController: UICollectionViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         memes = appDelegate.memes
         memeCollectionView.reloadData()
-        print("viewWillAppear CollectionView")
     }
     
     

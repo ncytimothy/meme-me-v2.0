@@ -110,7 +110,6 @@ class EditorViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(_ notification: NSNotification) {
-         print("keyShow called")
         if bottomTextField.isFirstResponder {
             view.frame.origin.y = -getKeyboardHeight(notification)
         }
